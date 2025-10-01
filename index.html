@@ -110,12 +110,12 @@
         </div>
         <div class="tela-cenario final final-sucesso" id="pedro_final_sucesso_plus"><div class="final-conteudo"><h2>Venda de Alto Valor!</h2><p>Excelente! Você não só resolveu o problema do cliente, mas identificou a oportunidade de oferecer um serviço de maior valor (UOL Faz Para Você) que se encaixava perfeitamente na necessidade dele de não se preocupar com a parte técnica. Venda concluída com sucesso!</p><button class="botao" onclick="voltarAoMenu('pedro', 'sucesso')">Voltar à Seleção</button></div></div>
         <div class="tela-cenario final final-sucesso" id="pedro_final_sucesso_basic"><div class="final-conteudo"><h2>Sucesso!</h2><p>Boa venda! Você respeitou a decisão do cliente pelo produto mais simples e fechou negócio. Ele sai satisfeito com o Criador de Sites.</p><button class="botao" onclick="voltarAoMenu('pedro', 'sucesso')">Voltar à Seleção</button></div></div>
-        <div class="tela-cenario final final-ruim" id="pedro_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida!</h2><p class="dialogo-cliente"><strong>Pedro:</strong> "Acho que você não entendeu... Eu não quero vender, só mostrar meu trabalho. Vou procurar algo mais simples, obrigado."</p><button class="botao" onclick="voltarAoMenu('pedro', 'falha')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="pedro_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida!</h2><div class="feedback" data-feedback-id="pedro_fb_1b"></div><div class="feedback" data-feedback-id="pedro_fb_1c"></div><div class="feedback" data-feedback-id="pedro_fb_2b"></div><div class="feedback" data-feedback-id="pedro_fb_3b"></div><div class="feedback" data-feedback-id="pedro_fb_4c"></div><button class="botao" onclick="voltarAoMenu('pedro', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="julia_1">
              <div class="dialogo-cliente"><p><strong>Júlia:</strong> "Oi, boa tarde. Eu tenho um restaurante e já tenho até um site, mas parece que ele não serve pra nada, ninguém entra..."</p></div>
              <div class="opcoes-container">
-                <button data-target="julia_2" data-feedback="julia_fb_1a">"Entendo, Júlia. Ter um site é o primeiro passo. Se ele já existe e é bom, o problema provavelmente é a falta de visitas, o que chamamos de 'tráfego'. Como as pessoas encontram seu restaurante hoje?"</button>
+                <button data-target="julia_2" data-feedback="julia_fb_1a">"Entendo, Júlia. Ter um site é o primeiro passo. Se ele já existe, o problema provavelmente é a falta de visitas, o que chamamos de 'tráfego'. Como as pessoas encontram seu restaurante hoje?"</button>
                 <button data-target="julia_final_ruim" data-feedback="julia_fb_1b">"Talvez o problema seja o seu site. Nós podemos criar um novo para você com o UOL Faz para Você, garantindo que ele seja otimizado."</button>
                 <button data-target="julia_final_ruim" data-feedback="julia_fb_1c">"Você precisa de uma Loja VirtUOL para as pessoas poderem fazer pedidos online direto pelo site."</button>
             </div>
@@ -139,7 +139,7 @@
             </div>
         </div>
         <div class="tela-cenario final final-sucesso" id="julia_final_sucesso"><div class="final-conteudo"><h2>Venda Estratégica!</h2><p>Excelente! Você diagnosticou que o problema era falta de tráfego, ofereceu a solução ideal (Google Ads) e quebrou a objeção sobre complexidade vendendo o valor do nosso gerenciamento.</p><button class="botao" onclick="voltarAoMenu('julia', 'sucesso')">Voltar à Seleção</button></div></div>
-        <div class="tela-cenario final final-ruim" id="julia_final_ruim"><div class="final-conteudo"><h2>Diagnóstico Incorreto!</h2><p class="dialogo-cliente"><strong>Júlia:</strong> "Mas eu já disse que tenho um site! Meu problema é outro... Deixa pra lá, obrigada."</p><button class="botao" onclick="voltarAoMenu('julia', 'falha')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="julia_final_ruim"><div class="final-conteudo"><h2>Diagnóstico Incorreto!</h2><div class="feedback" data-feedback-id="julia_fb_1b"></div><div class="feedback" data-feedback-id="julia_fb_1c"></div><div class="feedback" data-feedback-id="julia_fb_2b"></div><div class="feedback" data-feedback-id="julia_fb_2c"></div><div class="feedback" data-feedback-id="julia_fb_3b"></div><div class="feedback" data-feedback-id="julia_fb_3c"></div><button class="botao" onclick="voltarAoMenu('julia', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="mariana_1">
              <div class="dialogo-cliente"><p><strong>Mariana:</strong> "Oi, tudo bem? Vi o movimento aqui e resolvi parar. Vocês trabalham com soluções pra internet, né?"</p></div>
@@ -171,13 +171,13 @@
             <div class="feedback" data-feedback-id="mariana_fb_3a"></div>
              <div class="dialogo-cliente"><p><strong>Mariana:</strong> "Gostei da ideia da Loja Pronta, parece ideal para mim. Mas esse valor é uma mensalidade? Parece caro só para montar a loja..."</p></div>
              <div class="opcoes-container">
-                <button data-target="mariana_final_sucesso" data-feedback="mariana_fb_4a">"Ótima pergunta. O valor não é apenas pela montagem. Inclui a plataforma, a criação por especialistas e, o mais importante, 5 solicitações de manutenção por mês. Qualquer ajuste, nossa equipe faz para você. É a tranquilidade de ter seu e-commerce sempre atualizado."</button>
+                <button data-target="mariana_final_sucesso" data-feedback="mariana_fb_4a">"Ótima pergunta. O valor não é apenas pela montagem. Inclui a plataforma, a criação por especialistas e 5 solicitações de manutenção por mês. Qualquer ajuste, nossa equipe faz para você. É a tranquilidade de ter seu e-commerce sempre atualizado."</button>
                 <button data-target="mariana_final_ruim" data-feedback="mariana_fb_4b">"Sim, é uma mensalidade. Mas a criação profissional justifica o valor, é um investimento."</button>
                 <button data-target="mariana_final_ruim" data-feedback="mariana_fb_4c">"Se o valor é um problema, a Loja VirtUOL é mais em conta para você começar."</button>
             </div>
         </div>
         <div class="tela-cenario final final-sucesso" id="mariana_final_sucesso"><div class="final-conteudo"><h2>Venda Consultiva de Sucesso!</h2><p>Você fez um diagnóstico completo e superou uma objeção de preço com foco em valor. Venda de alto valor realizada com sucesso!</p><button class="botao" onclick="voltarAoMenu('mariana', 'sucesso')">Voltar à Seleção</button></div></div>
-        <div class="tela-cenario final final-ruim" id="mariana_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida.</h2><p class="dialogo-cliente"><strong>Mariana:</strong> "É, imaginei que seria caro. Vou continuar com meu WhatsApp por enquanto, parece mais fácil. Obrigada pela atenção."</p><button class="botao" onclick="voltarAoMenu('mariana', 'falha')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="mariana_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida.</h2><div class="feedback" data-feedback-id="mariana_fb_1b"></div><div class="feedback" data-feedback-id="mariana_fb_1c"></div><div class="feedback" data-feedback-id="mariana_fb_2b"></div><div class="feedback" data-feedback-id="mariana_fb_2c"></div><div class="feedback" data-feedback-id="mariana_fb_3b"></div><div class="feedback" data-feedback-id="mariana_fb_3c"></div><div class="feedback" data-feedback-id="mariana_fb_4b"></div><div class="feedback" data-feedback-id="mariana_fb_4c"></div><button class="botao" onclick="voltarAoMenu('mariana', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="sonia_1">
             <div class="dialogo-cliente"><p><strong>Sônia:</strong> "Boa tarde. Me disseram para dar uma olhada aqui, mas já vou avisando que não tenho muito tempo."</p></div>
@@ -215,7 +215,7 @@
             </div>
         </div>
         <div class="tela-cenario final final-sucesso" id="sonia_final_sucesso"><div class="final-conteudo"><h2>Confiança Reconquistada!</h2><p>Você superou múltiplas objeções com empatia, honestidade e profissionalismo, vendendo a segurança e o processo da EMPRESA. Venda de alto valor concluída!</p><button class="botao" onclick="voltarAoMenu('sonia', 'sucesso')">Voltar à Seleção</button></div></div>
-        <div class="tela-cenario final final-ruim" id="sonia_final_ruim"><div class="final-conteudo"><h2>Venda Não Realizada.</h2><p class="dialogo-cliente"><strong>Sônia:</strong> "É... 'Garantia' é uma palavra fácil de falar. Já ouvi isso antes. Obrigada pelo seu tempo, mas não estou convencida."</p><button class="botao" onclick="voltarAoMenu('sonia', 'falha')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="sonia_final_ruim"><div class="final-conteudo"><h2>Venda Não Realizada.</h2><div class="feedback" data-feedback-id="sonia_fb_1b"></div><div class="feedback" data-feedback-id="sonia_fb_1c"></div><div class="feedback" data-feedback-id="sonia_fb_2b"></div><div class="feedback" data-feedback-id="sonia_fb_2c"></div><div class="feedback" data-feedback-id="sonia_fb_3b"></div><div class="feedback" data-feedback-id="sonia_fb_3c"></div><div class="feedback" data-feedback-id="sonia_fb_4b"></div><div class="feedback" data-feedback-id="sonia_fb_4c"></div><button class="botao" onclick="voltarAoMenu('sonia', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="ricardo_1">
             <div class="dialogo-cliente"><p><strong>Ricardo:</strong> "Boa tarde. Minha loja de roupas está indo bem, mas me falaram que eu 'preciso' ter um site. Sinceramente? Acho que meu Instagram já dá conta do recado."</p></div>
@@ -244,7 +244,7 @@
             </div>
         </div>
         <div class="tela-cenario final final-sucesso" id="ricardo_final_sucesso"><div class="final-conteudo"><h2>Venda Inteligente!</h2><p>Você foi brilhante! Não confrontou o cliente, mas o fez chegar à própria conclusão de que o método dele era ineficiente. Depois, usou a objeção de "falta de tempo" para fazer o upsell perfeito para o serviço Loja Pronta.</p><button class="botao" onclick="voltarAoMenu('ricardo', 'sucesso')">Voltar à Seleção</button></div></div>
-        <div class="tela-cenario final final-ruim" id="ricardo_final_ruim"><div class="final-conteudo"><h2>Objeção Venceu!</h2><p class="dialogo-cliente"><strong>Ricardo:</strong> "É, como eu disse, meu Instagram já está bom. Não estou vendo vantagem nisso agora. Valeu!"</p><button class="botao" onclick="voltarAoMenu('ricardo', 'falha')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="ricardo_final_ruim"><div class="final-conteudo"><h2>Objeção Venceu!</h2><div class="feedback" data-feedback-id="ricardo_fb_1b"></div><div class="feedback" data-feedback-id="ricardo_fb_1c"></div><div class="feedback" data-feedback-id="ricardo_fb_2b"></div><div class="feedback" data-feedback-id="ricardo_fb_2c"></div><div class="feedback" data-feedback-id="ricardo_fb_3b"></div><div class="feedback" data-feedback-id="ricardo_fb_3c"></div><button class="botao" onclick="voltarAoMenu('ricardo', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="gustavo_1">
             <div class="dialogo-cliente"><p><strong>Gustavo:</strong> "Boa tarde. Eu já tenho uma loja virtual com a Concorrente X. O plano deles me custa R$ 79,90 por mês. O de vocês, pelo que vi no folheto, custa R$ 99,90. Vocês cobrem a oferta deles?"</p></div>
@@ -258,7 +258,7 @@
             <div class="feedback" data-feedback-id="gustavo_fb_1a"></div>
             <div class="dialogo-cliente"><p><strong>Gustavo:</strong> "Desconto no frete? Interessante, o frete realmente pesa no meu custo. Mas será que essa economia compensa a diferença na mensalidade?"</p></div>
             <div class="opcoes-container">
-                <button data-target="gustavo_3" data-feedback="gustavo_fb_2a">"Com certeza. E não é só isso. Nosso ecossistema é exclusivo: você integra gratuitamente sua loja ao Shopping UOL, ganhando um canal de vendas com a credibilidade da nossa marca, algo que nenhum outro concorrente oferece. A economia no frete somada à visibilidade extra geralmente superam, e muito, a diferença na mensalidade."</button>
+                <button data-target="gustavo_3" data-feedback="gustavo_fb_2a">"Com certeza. E não é só isso. Nosso ecossistema é exclusivo: você integra gratuitamente sua loja ao Shopping UOL, ganhando um canal de vendas com a credibilidade da nossa marca. A economia no frete somada à visibilidade extra geralmente superam, e muito, a diferença na mensalidade."</button>
                 <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_2b">"Sim, compensa. A maioria dos nossos clientes relata uma grande economia com o Envio Fácil."</button>
                 <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_2c">"Além do frete, nossa plataforma tem IA para criação de descrição de produtos, o que te economiza tempo."</button>
             </div>
@@ -273,8 +273,8 @@
             </div>
         </div>
         <div class="tela-cenario final final-sucesso" id="gustavo_final_sucesso"><div class="final-conteudo"><h2>Negociação de Mestre!</h2><p>Você foi perfeito! Não caiu na armadilha do preço, soube desviar o foco para o valor e usou nossos diferenciais exclusivos (Envio Fácil e Shopping UOL) como argumentos irrefutáveis. Você vendeu VALOR, não preço.</p><button class="botao" onclick="voltarAoMenu('gustavo', 'sucesso')">Voltar à Seleção</button></div></div>
-        <div class="tela-cenario final final-ruim" id="gustavo_final_ruim"><div class="final-conteudo"><h2>Venda Perdida!</h2><p class="dialogo-cliente"><strong>Gustavo:</strong> "Ok, se vocês não conseguem competir no preço, não faz sentido pra mim. Obrigado, mas vou continuar onde estou."</p><button class="botao" onclick="voltarAoMenu('gustavo', 'falha')">Voltar à Seleção</button></div></div>
-
+        <div class="tela-cenario final final-ruim" id="gustavo_final_ruim"><div class="final-conteudo"><h2>Venda Perdida!</h2><div class="feedback" data-feedback-id="gustavo_fb_1b"></div><div class="feedback" data-feedback-id="gustavo_fb_1c"></div><div class="feedback" data-feedback-id="gustavo_fb_2b"></div><div class="feedback" data-feedback-id="gustavo_fb_2c"></div><div class="feedback" data-feedback-id="gustavo_fb_3b"></div><div class="feedback" data-feedback-id="gustavo_fb_3c"></div><button class="botao" onclick="voltarAoMenu('gustavo', 'falha')">Voltar à Seleção</button></div></div>
+        
     </div>
     
     <script src="script.js"></script>

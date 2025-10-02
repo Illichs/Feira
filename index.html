@@ -13,7 +13,7 @@
         <p style="text-align: center;">Bem-vindo ao treinamento para a Feira do Empreendedor! Insira seus dados para começar.</p>
         <form id="form-inicio">
             <div class="form-grupo"><label for="nome-participante">Seu Nome:</label><input type="text" id="nome-participante" required></div>
-            <div class="form-grupo"><label for="equipe-participante">Sua Equipe:</label><select id="equipe-participante" required><option value="">Selecione...</option><option value="Equipe Alpha">Equipe Alpha</option><option value="Equipe Beta">Equipe Beta</option><option value="Equipe Gamma">Equipe Gamma</option></select></div>
+            <div class="form-grupo"><label for="equipe-participante">Sua Equipe:</label><input type="text" id="equipe-participante" placeholder="Digite o nome da sua equipe" required></div>
             <button type="submit" class="botao">Iniciar Treinamento</button>
         </form>
     </div>
@@ -21,21 +21,25 @@
     <div id="modal-instrucoes" class="modal-overlay">
         <div class="modal-conteudo">
             <h2>Como Funciona</h2>
-            <p>Sua missão é **descobrir a necessidade** de cada cliente e oferecer a melhor solução. Lembre-se, um bom vendedor influencia a venda para o produto de maior valor e que ainda resolva a dor do cliente.</p>
+            <p>Sua missão é **descobrir a necessidade** de cada cliente e oferecer a melhor solução. Lembre-se, um bom vendedor influencia a venda para o produto de maior valor que ainda resolva a dor do cliente.</p>
             <p>Após cada resposta sua, você receberá um **feedback construtivo**. Preste atenção neles para aprender o melhor caminho.</p>
             <button id="botao-fechar-modal" class="botao">Entendi, vamos lá!</button>
         </div>
     </div>
 
     <div id="selecao-cliente" class="container tela">
+        <div id="info-jogador">
+            <p><strong>Jogador:</strong> <span id="display-nome-jogador"></span></p>
+            <p><strong>Equipe:</strong> <span id="display-equipe-jogador"></span></p>
+        </div>
         <h2>Selecione um Cliente para Atender</h2>
         <div class="selecao-container">
             <div class="coluna-dificuldade facil">
                 <h3>Fácil</h3>
                 <button class="botao-cliente" data-cliente-id="pedro"><strong>Pedro</strong><span class="status-icon"></span></button>
                 <button class="botao-cliente" data-cliente-id="julia"><strong>Júlia</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="carlos"><strong>Carlos</strong><span class="status-icon"></span></button>
                 <button class="botao-cliente" data-cliente-id="ana" disabled><strong>Ana</strong><span class="status-icon"></span></button>
-                <button class="botao-cliente" data-cliente-id="carlos" disabled><strong>Carlos</strong><span class="status-icon"></span></button>
             </div>
             <div class="coluna-dificuldade medio">
                 <h3>Médio</h3>
@@ -141,6 +145,35 @@
         <div class="tela-cenario final final-sucesso" id="julia_final_sucesso"><div class="final-conteudo"><h2>Venda Estratégica!</h2><p>Excelente! Você diagnosticou que o problema era falta de tráfego, ofereceu a solução ideal (Google Ads) e quebrou a objeção sobre complexidade vendendo o valor do nosso gerenciamento.</p><button class="botao" onclick="voltarAoMenu('julia', 'sucesso')">Voltar à Seleção</button></div></div>
         <div class="tela-cenario final final-ruim" id="julia_final_ruim"><div class="final-conteudo"><h2>Diagnóstico Incorreto!</h2><div class="feedback" data-feedback-id="julia_fb_1b"></div><div class="feedback" data-feedback-id="julia_fb_1c"></div><div class="feedback" data-feedback-id="julia_fb_2b"></div><div class="feedback" data-feedback-id="julia_fb_2c"></div><div class="feedback" data-feedback-id="julia_fb_3b"></div><div class="feedback" data-feedback-id="julia_fb_3c"></div><button class="botao" onclick="voltarAoMenu('julia', 'falha')">Voltar à Seleção</button></div></div>
 
+        <div class="tela-cenario" id="carlos_1">
+            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Boa tarde, estou começando um negócio e olhando o que vocês oferecem..."</p></div>
+            <div class="opcoes-container">
+                <button data-target="carlos_2" data-feedback="carlos_fb_1a">"Boa tarde, Carlos! Que ótimo. Me conta um pouco sobre esse novo negócio, qual é a sua área?"</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_1b">"Legal! O primeiro passo para todo negócio é ter um site. Nosso Criador de Sites é perfeito para isso."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_1c">"Se está começando, precisa de clientes. Já pensou em anunciar com Google Ads?"</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="carlos_2">
+            <div class="feedback" data-feedback-id="carlos_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Estou abrindo uma consultoria de negócios. No momento, o que mais me preocupa é a imagem profissional. Estou usando meu e-mail pessoal para falar com meus primeiros clientes e não parece sério."</p></div>
+            <div class="opcoes-container">
+                <button data-target="carlos_3" data-feedback="carlos_fb_2a">"Você está certíssimo, a credibilidade é tudo. A solução para isso é registrar um domínio próprio, como 'carlosconsultoria.com.br', e ter um E-mail Profissional, como 'contato@...'. Passa outra imagem, não acha?"</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_2b">"Entendo. Nesse caso, você precisa de um site profissional. O serviço UOL Faz para Você entrega um site impecável, que vai resolver essa questão da imagem."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_2c">"Para e-mail, temos o E-mail Marketing, uma ferramenta poderosa para se comunicar com sua base de clientes."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="carlos_3">
+            <div class="feedback" data-feedback-id="carlos_fb_2a"></div>
+            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Com certeza! É exatamente isso. Mas como estou começando, meu orçamento está bem apertado. Quanto custa para registrar um domínio?"</p></div>
+            <div class="opcoes-container">
+                <button data-target="carlos_final_sucesso" data-feedback="carlos_fb_3a">"Essa é a melhor parte! Especialmente para a feira, temos uma promoção: fechando aqui no evento, o primeiro ano do seu domínio .com.br sai por apenas 99 centavos."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_3b">"O valor anual de um domínio é bem acessível, um ótimo investimento na sua marca."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_3c">"Se você contratar o Criador de Sites junto, o primeiro ano do domínio sai de graça. É uma ótima forma de economizar."</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="carlos_final_sucesso"><div class="final-conteudo"><h2>Venda Rápida e Eficaz!</h2><p>Perfeito! Você ouviu a dor específica do cliente, ofereceu a solução mais simples e direta (Domínio + E-mail) e usou a promoção do evento como um argumento de fechamento irresistível. Venda concluída!</p><button class="botao" onclick="voltarAoMenu('carlos', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="carlos_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida!</h2><div class="feedback" data-feedback-id="carlos_fb_1b"></div><div class="feedback" data-feedback-id="carlos_fb_1c"></div><div class="feedback" data-feedback-id="carlos_fb_2b"></div><div class="feedback" data-feedback-id="carlos_fb_2c"></div><div class="feedback" data-feedback-id="carlos_fb_3b"></div><div class="feedback" data-feedback-id="carlos_fb_3c"></div><button class="botao" onclick="voltarAoMenu('carlos', 'falha')">Voltar à Seleção</button></div></div>
+        
         <div class="tela-cenario" id="mariana_1">
              <div class="dialogo-cliente"><p><strong>Mariana:</strong> "Oi, tudo bem? Vi o movimento aqui e resolvi parar. Vocês trabalham com soluções pra internet, né?"</p></div>
              <div class="opcoes-container">
@@ -280,4 +313,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

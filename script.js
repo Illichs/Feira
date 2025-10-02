@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let participante = { nome: '', equipe: '' };
     let statusCenarios = {
         pedro: { status: 'pendente', nome: 'Pedro' },      julia: { status: 'pendente', nome: 'Júlia' },
-        ana: { status: 'pendente', nome: 'Ana' },          carlos: { status: 'pendente', nome: 'Carlos' },
+        carlos: { status: 'pendente', nome: 'Carlos' },    ana: { status: 'pendente', nome: 'Ana' },
         mariana: { status: 'pendente', nome: 'Mariana' },  ricardo: { status: 'pendente', nome: 'Ricardo' },
         fernanda: { status: 'pendente', nome: 'Fernanda' },lucas: { status: 'pendente', nome: 'Lucas' },
         sonia: { status: 'pendente', nome: 'Sônia' },      gustavo: { status: 'pendente', nome: 'Gustavo' },
@@ -42,6 +42,15 @@ document.addEventListener('DOMContentLoaded', function() {
         julia_fb_3a: { tipo: 'correto', texto: '<strong>Quebra de Objeção Perfeita!</strong><br>Você tirou o peso da "complexidade" das costas dela e vendeu o principal valor do nosso serviço: a gestão especializada.'},
         julia_fb_3b: { tipo: 'errado', quote: '<strong>Júlia:</strong> "Custo-benefício é vago. Eu quero saber se vou ter que ficar quebrando a cabeça com isso."</p><strong>Resposta Vaga.</strong><br>A abordagem correta seria focar no serviço de gestão de campanha que está incluso, que é o que resolve o medo dela sobre a complexidade.'},
         julia_fb_3c: { tipo: 'errado', quote: '<strong>Júlia:</strong> "Calma! Um de cada vez. Primeiro preciso entender se esse do Google funciona."</p><strong>Confuso.</strong><br>Ela já está receosa com UM serviço de anúncio, e você já está tentando vender um segundo. A abordagem correta é resolver um problema de cada vez.'},
+        carlos_fb_1a: { tipo: 'correto', texto: '<strong>Perfeito!</strong><br>Você abriu a conversa de forma consultiva, buscando entender o contexto do cliente antes de oferecer qualquer produto.'},
+        carlos_fb_1b: { tipo: 'errado', quote: '<strong>Carlos:</strong> "Um site? É, talvez... mas não é minha prioridade agora."</p><strong>Erro!</strong><br>Você presumiu a necessidade do cliente. A abordagem correta é sempre investigar primeiro. A dor dele poderia ser outra, como você descobriria se perguntasse sobre o negócio dele.'},
+        carlos_fb_1c: { tipo: 'errado', quote: '<strong>Carlos:</strong> "Anúncios? Calma, eu nem comecei direito, ainda não tenho nem o que anunciar!"</p><strong>Solução Apressada!</strong><br>Oferecer anúncios para quem ainda está estruturando a imagem profissional é um passo muito à frente. O correto é entender o estágio atual do negócio do cliente.'},
+        carlos_fb_2a: { tipo: 'correto', texto: '<strong>Diagnóstico Preciso!</strong><br>Você ouviu a dor do cliente ("imagem profissional", "e-mail pessoal") e conectou diretamente à solução mais simples e eficaz: Domínio + E-mail Profissional.'},
+        carlos_fb_2b: { tipo: 'errado', quote: '<strong>Carlos:</strong> "Um site inteiro? Parece um pouco demais, eu só queria resolver a questão do e-mail por enquanto."</p><strong>Exagerou na Dose!</strong><br>A dor do cliente era específica sobre o e-mail. Embora um site seja uma ótima solução de imagem, você poderia ter resolvido o problema dele de forma mais simples e direta primeiro.'},
+        carlos_fb_2c: { tipo: 'errado', quote: '<strong>Carlos:</strong> "E-mail Marketing? Não, não é isso. Eu não quero enviar e-mails em massa, eu quero um endereço de e-mail que seja meu, profissional."</p><strong>Produto Errado!</strong><br>Você confundiu E-mail Profissional (identidade) com E-mail Marketing (comunicação em massa). É crucial conhecer a diferença para não parecer despreparado.'},
+        carlos_fb_3a: { tipo: 'correto', texto: '<strong>Argumento de Venda Perfeito!</strong><br>Você usou a promoção exclusiva do evento como uma solução matadora para a objeção de preço do cliente. Isso cria urgência e um valor percebido imenso.'},
+        carlos_fb_3b: { tipo: 'errado', quote: '<strong>Carlos:</strong> "Acessível quanto? Preciso de números, estou com o orçamento contado."</p><strong>Resposta Vaga!</strong><br>Você tinha uma oferta incrível de 99 centavos e não a usou! Responder de forma genérica a uma objeção de preço é uma oportunidade perdida.'},
+        carlos_fb_3c: { tipo: 'errado', quote: '<strong>Carlos:</strong> "Mas eu não preciso de um site agora, só do domínio. Você não vende só o domínio?"</p><strong>Venda Casada Desnecessária!</strong><br>Você tentou forçar um produto a mais em vez de usar a promoção principal do evento, que era o grande atrativo. A oferta de 99 centavos teria fechado a venda na hora.'},
         mariana_fb_1a: { tipo: 'correto', texto: '<strong>Excelente!</strong><br>Você confirmou o interesse e já devolveu uma pergunta aberta, convidando o cliente a falar. É a melhor forma de começar um diagnóstico.' },
         mariana_fb_1b: { tipo: 'errado', quote: '<strong>Mariana:</strong> "Nossa, quantas opções... Eu nem sei por onde começar."</p><strong>Erro grave!</strong><br>Você listou produtos sem saber NADA sobre o cliente. A abordagem correta é sempre perguntar sobre o negócio do cliente primeiro.' },
         mariana_fb_1c: { tipo: 'errado', quote: '<strong>Mariana:</strong> "Ah, ok, vou dar uma olhada." (pega o folheto e vai embora)</p><strong>Muito passivo!</strong><br>Você transferiu a responsabilidade para o cliente. A abordagem correta é ser consultivo e guiar a conversa.' },
@@ -104,11 +113,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const fbData = feedbacks[feedbackId];
                 const feedbackEl = cenario.querySelector(`[data-feedback-id="${feedbackId}"]`);
                 if (feedbackEl) {
+                    let htmlFeedback = '';
                     if (fbData.quote) {
-                        feedbackEl.innerHTML = `<p class="dialogo-cliente">${fbData.quote}</p>${fbData.texto}`;
-                    } else {
-                        feedbackEl.innerHTML = fbData.texto;
+                        htmlFeedback += `<p class="dialogo-cliente">${fbData.quote}</p>`;
                     }
+                    htmlFeedback += fbData.texto;
+                    feedbackEl.innerHTML = htmlFeedback;
                     feedbackEl.classList.add(fbData.tipo);
                     feedbackEl.style.display = 'block';
                 }
@@ -121,6 +131,12 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         participante.nome = document.getElementById('nome-participante').value;
         participante.equipe = document.getElementById('equipe-participante').value;
+        
+        document.getElementById('display-nome-jogador').textContent = participante.nome;
+        document.getElementById('display-equipe-jogador').textContent = participante.equipe;
+        document.getElementById('resumo-nome').textContent = participante.nome;
+        document.getElementById('resumo-equipe').textContent = participante.equipe;
+
         menuPrincipal.classList.remove('ativa');
         modalInstrucoes.style.display = 'flex';
     });
@@ -149,8 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     botaoFinalizar.addEventListener('click', function() {
-        document.getElementById('resumo-nome').textContent = participante.nome;
-        document.getElementById('resumo-equipe').textContent = participante.equipe;
         const listaResumo = document.getElementById('resumo-lista');
         listaResumo.innerHTML = '';
         Object.keys(statusCenarios).forEach(id => {

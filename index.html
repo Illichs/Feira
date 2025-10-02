@@ -12,8 +12,20 @@
         <h1>Simulador de Vendas</h1>
         <p style="text-align: center;">Bem-vindo ao treinamento para a Feira do Empreendedor! Insira seus dados para começar.</p>
         <form id="form-inicio">
-            <div class="form-grupo"><label for="nome-participante">Seu Nome:</label><input type="text" id="nome-participante" required></div>
-            <div class="form-grupo"><label for="equipe-participante">Sua Equipe:</label><input type="text" id="equipe-participante" placeholder="Digite o nome da sua equipe" required></div>
+            <div class="form-grupo">
+                <label for="nome-participante">Seu Nome:</label>
+                <div class="input-com-icone">
+                    <span class="icone-input">👤</span>
+                    <input type="text" id="nome-participante" placeholder="Ex: Ana Souza" required>
+                </div>
+            </div>
+            <div class="form-grupo">
+                <label for="equipe-participante">Sua Equipe:</label>
+                <div class="input-com-icone">
+                    <span class="icone-input">👥</span>
+                    <input type="text" id="equipe-participante" placeholder="Ex: Equipe Vendas" required>
+                </div>
+            </div>
             <button type="submit" class="botao">Iniciar Treinamento</button>
         </form>
     </div>
@@ -117,7 +129,7 @@
         <div class="tela-cenario final final-ruim" id="pedro_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida!</h2><div class="feedback" data-feedback-id="pedro_fb_1b"></div><div class="feedback" data-feedback-id="pedro_fb_1c"></div><div class="feedback" data-feedback-id="pedro_fb_2b"></div><div class="feedback" data-feedback-id="pedro_fb_3b"></div><div class="feedback" data-feedback-id="pedro_fb_4c"></div><button class="botao" onclick="voltarAoMenu('pedro', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="julia_1">
-             <div class="dialogo-cliente"><p><strong>Júlia:</strong> "Oi, boa tarde. Eu tenho um restaurante e já tenho até um site, mas parece que ele não serve pra nada, ninguém entra..."</p></div>
+             <div class="dialogo-cliente"><p><strong>Júlia:</strong> "Boa tarde. Estava passando e vi o stand. Vocês ajudam empresas a conseguir mais clientes pela internet?"</p></div>
              <div class="opcoes-container">
                 <button data-target="julia_2" data-feedback="julia_fb_1a">"Entendo, Júlia. Ter um site é o primeiro passo. Se ele já existe, o problema provavelmente é a falta de visitas, o que chamamos de 'tráfego'. Como as pessoas encontram seu restaurante hoje?"</button>
                 <button data-target="julia_final_ruim" data-feedback="julia_fb_1b">"Talvez o problema seja o seu site. Nós podemos criar um novo para você com o UOL Faz para Você, garantindo que ele seja otimizado."</button>
@@ -146,7 +158,7 @@
         <div class="tela-cenario final final-ruim" id="julia_final_ruim"><div class="final-conteudo"><h2>Diagnóstico Incorreto!</h2><div class="feedback" data-feedback-id="julia_fb_1b"></div><div class="feedback" data-feedback-id="julia_fb_1c"></div><div class="feedback" data-feedback-id="julia_fb_2b"></div><div class="feedback" data-feedback-id="julia_fb_2c"></div><div class="feedback" data-feedback-id="julia_fb_3b"></div><div class="feedback" data-feedback-id="julia_fb_3c"></div><button class="botao" onclick="voltarAoMenu('julia', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="carlos_1">
-            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Boa tarde, estou começando um negócio e olhando o que vocês oferecem..."</p></div>
+            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Olá! Boa tarde. Estou dando uma volta na feira para ver as novidades para empreendedores. O que vocês fazem exatamente?"</p></div>
             <div class="opcoes-container">
                 <button data-target="carlos_2" data-feedback="carlos_fb_1a">"Boa tarde, Carlos! Que ótimo. Me conta um pouco sobre esse novo negócio, qual é a sua área?"</button>
                 <button data-target="carlos_final_ruim" data-feedback="carlos_fb_1b">"Legal! O primeiro passo para todo negócio é ter um site. Nosso Criador de Sites é perfeito para isso."</button>
@@ -251,7 +263,7 @@
         <div class="tela-cenario final final-ruim" id="sonia_final_ruim"><div class="final-conteudo"><h2>Venda Não Realizada.</h2><div class="feedback" data-feedback-id="sonia_fb_1b"></div><div class="feedback" data-feedback-id="sonia_fb_1c"></div><div class="feedback" data-feedback-id="sonia_fb_2b"></div><div class="feedback" data-feedback-id="sonia_fb_2c"></div><div class="feedback" data-feedback-id="sonia_fb_3b"></div><div class="feedback" data-feedback-id="sonia_fb_3c"></div><div class="feedback" data-feedback-id="sonia_fb_4b"></div><div class="feedback" data-feedback-id="sonia_fb_4c"></div><button class="botao" onclick="voltarAoMenu('sonia', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="ricardo_1">
-            <div class="dialogo-cliente"><p><strong>Ricardo:</strong> "Boa tarde. Minha loja de roupas está indo bem, mas me falaram que eu 'preciso' ter um site. Sinceramente? Acho que meu Instagram já dá conta do recado."</p></div>
+            <div class="dialogo-cliente"><p><strong>Ricardo:</strong> "Boa tarde. Uma dúvida rápida: para quem já vende bem pelas redes sociais, ter um site próprio faz mesmo diferença?"</p></div>
             <div class="opcoes-container">
                 <button data-target="ricardo_2" data-feedback="ricardo_fb_1a">"Entendo, Ricardo. O Instagram é uma ferramenta fantástica. E como você faz quando um cliente quer comprar por lá? O processo é todo manual, por mensagem?"</button>
                 <button data-target="ricardo_final_ruim" data-feedback="ricardo_fb_1b">"Mas um site passa muito mais profissionalismo. O Instagram é bom, mas não se compara a ter seu próprio e-commerce."</button>
@@ -280,7 +292,7 @@
         <div class="tela-cenario final final-ruim" id="ricardo_final_ruim"><div class="final-conteudo"><h2>Objeção Venceu!</h2><div class="feedback" data-feedback-id="ricardo_fb_1b"></div><div class="feedback" data-feedback-id="ricardo_fb_1c"></div><div class="feedback" data-feedback-id="ricardo_fb_2b"></div><div class="feedback" data-feedback-id="ricardo_fb_2c"></div><div class="feedback" data-feedback-id="ricardo_fb_3b"></div><div class="feedback" data-feedback-id="ricardo_fb_3c"></div><button class="botao" onclick="voltarAoMenu('ricardo', 'falha')">Voltar à Seleção</button></div></div>
 
         <div class="tela-cenario" id="gustavo_1">
-            <div class="dialogo-cliente"><p><strong>Gustavo:</strong> "Boa tarde. Eu já tenho uma loja virtual com a Concorrente X. O plano deles me custa R$ 79,90 por mês. O de vocês, pelo que vi no folheto, custa R$ 99,90. Vocês cobrem a oferta deles?"</p></div>
+            <div class="dialogo-cliente"><p><strong>Gustavo:</strong> "Boa tarde. Dei uma olhada no material de vocês sobre loja virtual. Poderia me explicar o que a plataforma de vocês oferece de diferente das outras que já existem?"</p></div>
             <div class="opcoes-container">
                 <button data-target="gustavo_2" data-feedback="gustavo_fb_1a">"Olá Gustavo! Entendo sua busca pelo melhor preço. Mas uma plataforma não é só o valor da mensalidade. Me diga, nesses R$ 79,90, quanto você gasta a mais com taxas de frete? Pergunto isso porque nosso plano inclui o Envio Fácil, que pode te dar até 70% de desconto nos Correios."</button>
                 <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_1b">"Infelizmente não trabalhamos com descontos para cobrir ofertas, mas posso garantir que nossa plataforma é superior."</button>

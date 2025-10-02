@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Vendas - Feira do Empreendedor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="menu-principal" class="container tela ativa">
+        <h1>Simulador de Vendas</h1>
+        <p style="text-align: center;">Bem-vindo ao treinamento para a Feira do Empreendedor! Insira seus dados para começar.</p>
+        <form id="form-inicio">
+            <div class="form-grupo"><label for="nome-participante">Seu Nome:</label><input type="text" id="nome-participante" required></div>
+            <div class="form-grupo"><label for="equipe-participante">Sua Equipe:</label><input type="text" id="equipe-participante" placeholder="Digite o nome da sua equipe" required></div>
+            <button type="submit" class="botao">Iniciar Treinamento</button>
+        </form>
+    </div>
+
+    <div id="modal-instrucoes" class="modal-overlay">
+        <div class="modal-conteudo">
+            <h2>Como Funciona</h2>
+            <p>Sua missão é simples: <strong>ouvir o cliente, diagnosticar sua necessidade</strong> e oferecer a melhor solução do nosso portfólio.</p>
+            <p>Após cada resposta, você receberá um <strong>feedback construtivo</strong> e imediato. Preste atenção a ele para entender o impacto de cada abordagem e evoluir como vendedor.</p>
+            <button id="botao-fechar-modal" class="botao">Entendi, vamos lá!</button>
+        </div>
+    </div>
+
+    <div id="selecao-cliente" class="container tela">
+        <div id="info-jogador">
+            <p><strong>Jogador:</strong> <span id="display-nome-jogador"></span></p>
+            <p><strong>Equipe:</strong> <span id="display-equipe-jogador"></span></p>
+        </div>
+        <h2>Selecione um Cliente para Atender</h2>
+        <div class="selecao-container">
+            <div class="coluna-dificuldade facil">
+                <h3>Fácil</h3>
+                <button class="botao-cliente" data-cliente-id="pedro"><strong>Pedro</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="julia"><strong>Júlia</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="carlos"><strong>Carlos</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="ana" disabled><strong>Ana</strong><span class="status-icon"></span></button>
+            </div>
+            <div class="coluna-dificuldade medio">
+                <h3>Médio</h3>
+                <button class="botao-cliente" data-cliente-id="mariana"><strong>Mariana</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="ricardo"><strong>Ricardo</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="fernanda" disabled><strong>Fernanda</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="lucas" disabled><strong>Lucas</strong><span class="status-icon"></span></button>
+            </div>
+            <div class="coluna-dificuldade dificil">
+                <h3>Difícil</h3>
+                <button class="botao-cliente" data-cliente-id="sonia"><strong>Sônia</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="gustavo"><strong>Gustavo</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="beatriz" disabled><strong>Beatriz</strong><span class="status-icon"></span></button>
+                <button class="botao-cliente" data-cliente-id="tiago" disabled><strong>Tiago</strong><span class="status-icon"></span></button>
+            </div>
+        </div>
+        <button id="botao-finalizar" class="botao botao-secundario">Finalizar e Ver Resumo</button>
+    </div>
+
+    <div id="tela-resumo" class="container tela">
+        <h2>Resumo do Treinamento</h2>
+        <p><strong>Participante:</strong> <span id="resumo-nome"></span></p>
+        <p><strong>Equipe:</strong> <span id="resumo-equipe"></span></p>
+        <h3>Resultados:</h3>
+        <ul id="resumo-lista"></ul>
+        <button class="botao" onclick="location.reload()">Reiniciar</button>
+    </div>
+
+    <div id="cenarios-container" class="container tela">
+        <div class="tela-cenario" id="pedro_1">
+            <div class="dialogo-cliente"><p><strong>Pedro:</strong> "Olá, boa tarde! Estava dando uma olhada no stand de vocês..."</p></div>
+            <div class="opcoes-container">
+                <button data-target="pedro_2" data-feedback="pedro_fb_1a">"Boa tarde, seja bem-vindo! Meu nome é [Seu Nome]. Você já tem um negócio ou está pensando em começar a empreender?"</button>
+                <button data-target="pedro_final_ruim" data-feedback="pedro_fb_1b">"Boa tarde! Que bom! Já conhece nosso Criador de Sites? Ele está em promoção hoje na feira!"</button>
+                <button data-target="pedro_final_ruim" data-feedback="pedro_fb_1c">"Olá! Se precisar de qualquer ajuda para entender nossos produtos, é só me chamar."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="pedro_2">
+            <div class="feedback" data-feedback-id="pedro_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Pedro:</strong> "Eu já tenho um negócio, sou fotógrafo. O Instagram é legal, mas queria um site meu, um portfólio mais profissional para passar credibilidade."</p></div>
+            <div class="opcoes-container">
+                <button data-target="pedro_3" data-feedback="pedro_fb_2a">"Entendi, Pedro. Para um portfólio profissional, nossa ferramenta ideal é o Criador de Sites. Ele tem templates visuais excelentes para fotógrafos."</button>
+                <button data-target="pedro_final_ruim" data-feedback="pedro_fb_2b">"Ah, fotógrafo! Então você deveria montar uma Loja VirtUOL para poder vender suas fotos e pacotes de ensaios online."</button>
+                <button data-target="pedro_3" data-feedback="pedro_fb_2c">"Certo. E você tem interesse em fazer o site você mesmo ou prefere que uma equipe de especialistas cuide de tudo para você?"</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="pedro_3">
+            <div class="feedback" data-feedback-id="pedro_fb_2a"></div><div class="feedback" data-feedback-id="pedro_fb_2c"></div>
+            <div class="dialogo-cliente"><p><strong>Pedro:</strong> "Gostei da ideia do Criador de Sites. Mas eu não sou bom com tecnologia, tenho receio de ser complicado de mexer."</p></div>
+            <div class="opcoes-container">
+                <button data-target="pedro_4_upsell" data-feedback="pedro_fb_3a">"É um receio comum, mas o Criador de Sites tem um Editor Simplificado com IA que cria uma base do site para você. Mas me diga: você é do tipo que gosta de ter total controle criativo, ou prefere focar 100% na fotografia e deixar a criação com especialistas para garantir um resultado impecável?"</button>
+                <button data-target="pedro_final_ruim" data-feedback="pedro_fb_3b">"Não se preocupe, é bem fácil de usar, qualquer pessoa consegue."</button>
+                <button data-target="pedro_4_direto_ufpv" data-feedback="pedro_fb_3c">"Entendo. Nesse caso, esqueça o Criador de Sites. A solução para você é o UOL Faz para Você, onde nossos especialistas criam o site."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="pedro_4_upsell">
+            <div class="feedback" data-feedback-id="pedro_fb_3a"></div>
+            <div class="dialogo-cliente"><p><strong>Pedro:</strong> "Olha, pensando bem, prefiro focar no meu trabalho. Essa opção de especialistas cuidarem de tudo me interessa. Como funciona?"</p></div>
+            <div class="opcoes-container">
+                <button data-target="pedro_final_sucesso_plus" data-feedback="pedro_fb_4a">"É o UOL Faz Para Você. A vantagem é a tranquilidade. Você nos envia seu material e nossa equipe de designers garante um site profissional e otimizado rapidamente, com manutenções inclusas. Você foca em fotografar, nós cuidamos do seu site."</button>
+                <button data-target="pedro_final_sucesso_basic" data-feedback="pedro_fb_4b">"Funciona bem, mas se o Criador de Sites já te atende e é mais em conta, talvez seja melhor começar por ele."</button>
+                <button data-target="pedro_final_ruim" data-feedback="pedro_fb_4c">"A vantagem é o preço, que por tudo que entrega, é muito bom."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="pedro_4_direto_ufpv">
+            <div class="feedback" data-feedback-id="pedro_fb_3c"></div>
+            <div class="dialogo-cliente"><p><strong>Pedro:</strong> "Ah, então vocês fazem tudo? Qual a vantagem real disso?"</p></div>
+            <div class="opcoes-container">
+                <button data-target="pedro_final_sucesso_plus" data-feedback="pedro_fb_4a">"A vantagem é a tranquilidade. Você foca no seu trabalho, que é fotografar, e nossa equipe de designers garante um site profissional, otimizado e no ar rapidamente, com manutenções inclusas."</button>
+                <button data-target="pedro_final_ruim" data-feedback="pedro_fb_4c">"A vantagem é o preço, que por tudo que entrega, é muito bom."</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="pedro_final_sucesso_plus"><div class="final-conteudo"><h2>Venda de Alto Valor!</h2><p>Excelente! Você não só resolveu o problema do cliente, mas identificou a oportunidade de oferecer um serviço de maior valor (UOL Faz Para Você) que se encaixava perfeitamente na necessidade dele de não se preocupar com a parte técnica. Venda concluída com sucesso!</p><button class="botao" onclick="voltarAoMenu('pedro', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-sucesso" id="pedro_final_sucesso_basic"><div class="final-conteudo"><h2>Sucesso!</h2><p>Boa venda! Você respeitou a decisão do cliente pelo produto mais simples e fechou negócio. Ele sai satisfeito com o Criador de Sites.</p><button class="botao" onclick="voltarAoMenu('pedro', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="pedro_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida!</h2><div class="feedback" data-feedback-id="pedro_fb_1b"></div><div class="feedback" data-feedback-id="pedro_fb_1c"></div><div class="feedback" data-feedback-id="pedro_fb_2b"></div><div class="feedback" data-feedback-id="pedro_fb_3b"></div><div class="feedback" data-feedback-id="pedro_fb_4c"></div><button class="botao" onclick="voltarAoMenu('pedro', 'falha')">Voltar à Seleção</button></div></div>
+
+        <div class="tela-cenario" id="julia_1">
+             <div class="dialogo-cliente"><p><strong>Júlia:</strong> "Oi, boa tarde. Eu tenho um restaurante e já tenho até um site, mas parece que ele não serve pra nada, ninguém entra..."</p></div>
+             <div class="opcoes-container">
+                <button data-target="julia_2" data-feedback="julia_fb_1a">"Entendo, Júlia. Ter um site é o primeiro passo. Se ele já existe, o problema provavelmente é a falta de visitas, o que chamamos de 'tráfego'. Como as pessoas encontram seu restaurante hoje?"</button>
+                <button data-target="julia_final_ruim" data-feedback="julia_fb_1b">"Talvez o problema seja o seu site. Nós podemos criar um novo para você com o UOL Faz para Você, garantindo que ele seja otimizado."</button>
+                <button data-target="julia_final_ruim" data-feedback="julia_fb_1c">"Você precisa de uma Loja VirtUOL para as pessoas poderem fazer pedidos online direto pelo site."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="julia_2">
+            <div class="feedback" data-feedback-id="julia_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Júlia:</strong> "Basicamente por indicação ou quem já passa na frente. Eu queria que as pessoas que procuram por 'restaurante no meu bairro' no Google me encontrassem."</p></div>
+            <div class="opcoes-container">
+                <button data-target="julia_3" data-feedback="julia_fb_2a">"Perfeito! Para esse objetivo, a solução é o Google Ads. Nós criamos anúncios para que seu restaurante apareça no topo das buscas quando alguém procurar por termos como esse na sua região."</button>
+                <button data-target="julia_final_ruim" data-feedback="julia_fb_2b">"Você também pode anunciar no UOL Anúncios. Atingimos milhões de pessoas e seu restaurante ganha muita visibilidade."</button>
+                <button data-target="julia_final_ruim" data-feedback="julia_fb_2c">"Para isso, você precisa melhorar o SEO do seu site. Nossos planos do Criador de Sites têm ferramentas ótimas para isso."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="julia_3">
+            <div class="feedback" data-feedback-id="julia_fb_2a"></div>
+            <div class="dialogo-cliente"><p><strong>Júlia:</strong> "Anúncios no Google... Mas isso não é muito caro e complicado? Eu não saberia gerenciar isso."</p></div>
+            <div class="opcoes-container">
+                <button data-target="julia_final_sucesso" data-feedback="julia_fb_3a">"Não precisa se preocupar com a complexidade. Nosso serviço inclui um Gestor de Campanha dedicado. Ele cuida de tudo: cria os anúncios, define o público e otimiza o orçamento para trazer o máximo de resultado."</button>
+                <button data-target="julia_final_ruim" data-feedback="julia_fb_3b">"O valor do investimento é você quem decide, a partir de um valor mínimo. É um ótimo custo-benefício."</button>
+                <button data-target="julia_final_ruim" data-feedback="julia_fb_3c">"Se você também anunciar no Facebook Ads, podemos criar uma estratégia completa para atrair clientes de todos os lados."</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="julia_final_sucesso"><div class="final-conteudo"><h2>Venda Estratégica!</h2><p>Excelente! Você diagnosticou que o problema era falta de tráfego, ofereceu a solução ideal (Google Ads) e quebrou a objeção sobre complexidade vendendo o valor do nosso gerenciamento.</p><button class="botao" onclick="voltarAoMenu('julia', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="julia_final_ruim"><div class="final-conteudo"><h2>Diagnóstico Incorreto!</h2><div class="feedback" data-feedback-id="julia_fb_1b"></div><div class="feedback" data-feedback-id="julia_fb_1c"></div><div class="feedback" data-feedback-id="julia_fb_2b"></div><div class="feedback" data-feedback-id="julia_fb_2c"></div><div class="feedback" data-feedback-id="julia_fb_3b"></div><div class="feedback" data-feedback-id="julia_fb_3c"></div><button class="botao" onclick="voltarAoMenu('julia', 'falha')">Voltar à Seleção</button></div></div>
+
+        <div class="tela-cenario" id="carlos_1">
+            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Boa tarde, estou começando um negócio e olhando o que vocês oferecem..."</p></div>
+            <div class="opcoes-container">
+                <button data-target="carlos_2" data-feedback="carlos_fb_1a">"Boa tarde, Carlos! Que ótimo. Me conta um pouco sobre esse novo negócio, qual é a sua área?"</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_1b">"Legal! O primeiro passo para todo negócio é ter um site. Nosso Criador de Sites é perfeito para isso."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_1c">"Se está começando, precisa de clientes. Já pensou em anunciar com Google Ads?"</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="carlos_2">
+            <div class="feedback" data-feedback-id="carlos_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Estou abrindo uma consultoria de negócios. No momento, o que mais me preocupa é a imagem profissional. Estou usando meu e-mail pessoal para falar com meus primeiros clientes e não parece sério."</p></div>
+            <div class="opcoes-container">
+                <button data-target="carlos_3" data-feedback="carlos_fb_2a">"Você está certíssimo, a credibilidade é tudo. A solução para isso é registrar um domínio próprio, como 'carlosconsultoria.com.br', e ter um E-mail Profissional, como 'contato@...'. Passa outra imagem, não acha?"</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_2b">"Entendo. Nesse caso, você precisa de um site profissional. O serviço UOL Faz para Você entrega um site impecável, que vai resolver essa questão da imagem."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_2c">"Para e-mail, temos o E-mail Marketing, uma ferramenta poderosa para se comunicar com sua base de clientes."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="carlos_3">
+            <div class="feedback" data-feedback-id="carlos_fb_2a"></div>
+            <div class="dialogo-cliente"><p><strong>Carlos:</strong> "Com certeza! É exatamente isso. Mas como estou começando, meu orçamento está bem apertado. Quanto custa para registrar um domínio?"</p></div>
+            <div class="opcoes-container">
+                <button data-target="carlos_final_sucesso" data-feedback="carlos_fb_3a">"Essa é a melhor parte! Especialmente para a feira, temos uma promoção: fechando aqui no evento, o primeiro ano do seu domínio .com.br sai por apenas 99 centavos."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_3b">"O valor anual de um domínio é bem acessível, um ótimo investimento na sua marca."</button>
+                <button data-target="carlos_final_ruim" data-feedback="carlos_fb_3c">"Se você contratar o Criador de Sites junto, o primeiro ano do domínio sai de graça. É uma ótima forma de economizar."</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="carlos_final_sucesso"><div class="final-conteudo"><h2>Venda Rápida e Eficaz!</h2><p>Perfeito! Você ouviu a dor específica do cliente, ofereceu a solução mais simples e direta (Domínio + E-mail) e usou a promoção do evento como um argumento de fechamento irresistível. Venda concluída!</p><button class="botao" onclick="voltarAoMenu('carlos', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="carlos_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida!</h2><div class="feedback" data-feedback-id="carlos_fb_1b"></div><div class="feedback" data-feedback-id="carlos_fb_1c"></div><div class="feedback" data-feedback-id="carlos_fb_2b"></div><div class="feedback" data-feedback-id="carlos_fb_2c"></div><div class="feedback" data-feedback-id="carlos_fb_3b"></div><div class="feedback" data-feedback-id="carlos_fb_3c"></div><button class="botao" onclick="voltarAoMenu('carlos', 'falha')">Voltar à Seleção</button></div></div>
+        
+        <div class="tela-cenario" id="mariana_1">
+             <div class="dialogo-cliente"><p><strong>Mariana:</strong> "Oi, tudo bem? Vi o movimento aqui e resolvi parar. Vocês trabalham com soluções pra internet, né?"</p></div>
+             <div class="opcoes-container">
+                <button data-target="mariana_2" data-feedback="mariana_fb_1a">"Olá, tudo bem! Isso mesmo, ajudamos empreendedores a terem sucesso no digital. Me conta um pouco sobre o seu negócio."</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_1b">"Isso! Temos Loja Virtual, Criador de Sites... O que você está precisando?"</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_1c">"Sim. Dê uma olhada nos nossos folhetos, temos muitas opções para você."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="mariana_2">
+            <div class="feedback" data-feedback-id="mariana_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Mariana:</strong> "Eu sou confeiteira. Vendo pelo Instagram e WhatsApp, mas perco muito tempo com pedidos e sinto que não pareço profissional."</p></div>
+             <div class="opcoes-container">
+                <button data-target="mariana_3" data-feedback="mariana_fb_2a">"Entendi, Mariana. É uma dor comum. Para te direcionar: seu objetivo hoje é ter um site mais profissional, ou ter uma loja online completa para automatizar as vendas?"</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_2b">"Ah, então você precisa de uma Loja VirtUOL. Ela vai resolver tudo isso."</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_2c">"Para parecer mais profissional, você precisa de um site. Nosso Criador de Sites é ótimo para isso."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="mariana_3">
+            <div class="feedback" data-feedback-id="mariana_fb_2a"></div>
+             <div class="dialogo-cliente"><p><strong>Mariana:</strong> "Com certeza automatizar as vendas! Quero que as pessoas possam comprar sozinhas."</p></div>
+             <div class="opcoes-container">
+                <button data-target="mariana_4" data-feedback="mariana_fb_3a">"Ótimo! Nesse caso, temos duas soluções. A Loja VirtUOL, para você mesma montar sua loja, ou a Loja Pronta, onde nossa equipe de especialistas entrega tudo pronto, já que seu tempo é curto. Qual te atrai mais?"</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_3b">"Então é a Loja VirtUOL. Ela é a mais barata e você já começa a montar hoje mesmo."</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_3c">"Que bom! E além da loja, já pensou em anunciar com Google Ads para atrair mais gente?"</button>
+            </div>
+        </div>
+         <div class="tela-cenario" id="mariana_4">
+            <div class="feedback" data-feedback-id="mariana_fb_3a"></div>
+             <div class="dialogo-cliente"><p><strong>Mariana:</strong> "Gostei da ideia da Loja Pronta, parece ideal para mim. Mas esse valor é uma mensalidade? Parece caro só para montar a loja..."</p></div>
+             <div class="opcoes-container">
+                <button data-target="mariana_final_sucesso" data-feedback="mariana_fb_4a">"Ótima pergunta. O valor não é apenas pela montagem. Inclui a plataforma, a criação por especialistas e 5 solicitações de manutenção por mês. Qualquer ajuste, nossa equipe faz para você. É a tranquilidade de ter seu e-commerce sempre atualizado."</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_4b">"Sim, é uma mensalidade. Mas a criação profissional justifica o valor, é um investimento."</button>
+                <button data-target="mariana_final_ruim" data-feedback="mariana_fb_4c">"Se o valor é um problema, a Loja VirtUOL é mais em conta para você começar."</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="mariana_final_sucesso"><div class="final-conteudo"><h2>Venda Consultiva de Sucesso!</h2><p>Você fez um diagnóstico completo e superou uma objeção de preço com foco em valor. Venda de alto valor realizada com sucesso!</p><button class="botao" onclick="voltarAoMenu('mariana', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="mariana_final_ruim"><div class="final-conteudo"><h2>Oportunidade Perdida.</h2><div class="feedback" data-feedback-id="mariana_fb_1b"></div><div class="feedback" data-feedback-id="mariana_fb_1c"></div><div class="feedback" data-feedback-id="mariana_fb_2b"></div><div class="feedback" data-feedback-id="mariana_fb_2c"></div><div class="feedback" data-feedback-id="mariana_fb_3b"></div><div class="feedback" data-feedback-id="mariana_fb_3c"></div><div class="feedback" data-feedback-id="mariana_fb_4b"></div><div class="feedback" data-feedback-id="mariana_fb_4c"></div><button class="botao" onclick="voltarAoMenu('mariana', 'falha')">Voltar à Seleção</button></div></div>
+
+        <div class="tela-cenario" id="sonia_1">
+            <div class="dialogo-cliente"><p><strong>Sônia:</strong> "Boa tarde. Me disseram para dar uma olhada aqui, mas já vou avisando que não tenho muito tempo."</p></div>
+            <div class="opcoes-container">
+                <button data-target="sonia_2" data-feedback="sonia_fb_1a">"Boa tarde, seja bem-vinda! Serei breve. Para te ajudar, qual é a sua área de atuação?"</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_1b">"Boa tarde. O que a senhora precisa? Um site? Uma loja?"</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_1c">"Sem problemas. Se não tem tempo, posso te dar um folheto para ver depois com calma."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="sonia_2">
+            <div class="feedback" data-feedback-id="sonia_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Sônia:</strong> "Sou advogada. E já vou adiantar: já tive uma péssima experiência com um 'webdesigner' que sumiu com meu dinheiro e me entregou um site horrível. Tenho aversão a isso."</p></div>
+            <div class="opcoes-container">
+                <button data-target="sonia_3" data-feedback="sonia_fb_2a">"Sônia, eu sinto muito pela sua experiência. Isso é frustrante. A diferença aqui é a segurança: você não está contratando um freelancer, mas a estrutura e a garantia contratual da EMPRESA. Nosso serviço UOL Faz para Você é desenhado para profissionais como você."</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_2b">"Mas com a gente é diferente. Nosso serviço é profissional, não tem como comparar."</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_2c">"É por isso que o nosso Criador de Sites é melhor. Assim a senhora mesma faz e não depende de ninguém."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="sonia_3">
+            <div class="feedback" data-feedback-id="sonia_fb_2a"></div>
+             <div class="dialogo-cliente"><p><strong>Sônia:</strong> "Garantia contratual... ok. Mas qual a garantia de que o site vai me trazer clientes? O último não trouxe ninguém."</p></div>
+            <div class="opcoes-container">
+                <button data-target="sonia_4" data-feedback="sonia_fb_3a">"Essa é uma questão crucial. Nenhum site, por si só, garante clientes. Ele é a fundação da sua presença online. O que ele garante é que, quando um cliente te procurar, ele encontrará um escritório sério. A atração de clientes é o próximo passo, que fazemos com ferramentas como o Google Ads."</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_3b">"Com o nosso serviço UOL Faz Para Você e a força da nossa marca, os clientes virão com certeza."</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_3c">"Se a senhora quer garantia de clientes, então precisa contratar nosso serviço de Google Ads junto com o site."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="sonia_4">
+             <div class="feedback" data-feedback-id="sonia_fb_3a"></div>
+             <div class="dialogo-cliente"><p><strong>Sônia:</strong> "Entendi. Então, primeiro a 'base'. Faz sentido. E o processo com vocês? Como garantem que não vai ser outra dor de cabeça?"</p></div>
+             <div class="opcoes-container">
+                <button data-target="sonia_final_sucesso" data-feedback="sonia_fb_4a">"O processo é formal e transparente. Você preenche um briefing, nossa equipe de especialistas cria o site em até 10 dias úteis e apresenta para sua aprovação. O site só vai ao ar quando a senhora validar, e o serviço inclui manutenções mensais."</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_4b">"É bem simples. A senhora nos diz o que quer e a gente faz. Sem complicações."</button>
+                <button data-target="sonia_final_ruim" data-feedback="sonia_fb_4c">"Nossa equipe de criação é a melhor do mercado, eles vão te entregar um site perfeito, não se preocupe."</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="sonia_final_sucesso"><div class="final-conteudo"><h2>Confiança Reconquistada!</h2><p>Você superou múltiplas objeções com empatia, honestidade e profissionalismo, vendendo a segurança e o processo da EMPRESA. Venda de alto valor concluída!</p><button class="botao" onclick="voltarAoMenu('sonia', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="sonia_final_ruim"><div class="final-conteudo"><h2>Venda Não Realizada.</h2><div class="feedback" data-feedback-id="sonia_fb_1b"></div><div class="feedback" data-feedback-id="sonia_fb_1c"></div><div class="feedback" data-feedback-id="sonia_fb_2b"></div><div class="feedback" data-feedback-id="sonia_fb_2c"></div><div class="feedback" data-feedback-id="sonia_fb_3b"></div><div class="feedback" data-feedback-id="sonia_fb_3c"></div><div class="feedback" data-feedback-id="sonia_fb_4b"></div><div class="feedback" data-feedback-id="sonia_fb_4c"></div><button class="botao" onclick="voltarAoMenu('sonia', 'falha')">Voltar à Seleção</button></div></div>
+
+        <div class="tela-cenario" id="ricardo_1">
+            <div class="dialogo-cliente"><p><strong>Ricardo:</strong> "Boa tarde. Minha loja de roupas está indo bem, mas me falaram que eu 'preciso' ter um site. Sinceramente? Acho que meu Instagram já dá conta do recado."</p></div>
+            <div class="opcoes-container">
+                <button data-target="ricardo_2" data-feedback="ricardo_fb_1a">"Entendo, Ricardo. O Instagram é uma ferramenta fantástica. E como você faz quando um cliente quer comprar por lá? O processo é todo manual, por mensagem?"</button>
+                <button data-target="ricardo_final_ruim" data-feedback="ricardo_fb_1b">"Mas um site passa muito mais profissionalismo. O Instagram é bom, mas não se compara a ter seu próprio e-commerce."</button>
+                <button data-target="ricardo_final_ruim" data-feedback="ricardo_fb_1c">"Certo, mas com a Loja VirtUOL você poderia vender muito mais do que vende hoje pelo Instagram."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="ricardo_2">
+            <div class="feedback" data-feedback-id="ricardo_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Ricardo:</strong> "Isso. O cliente manda mensagem, eu passo o PIX, confirmo o pagamento, anoto o endereço... dá um trabalhinho, mas funciona."</p></div>
+            <div class="opcoes-container">
+                <button data-target="ricardo_3" data-feedback="ricardo_fb_2a">"E esse 'trabalhinho' não te consome um tempo precioso que você poderia usar para buscar novos fornecedores ou pensar na sua próxima coleção? Com uma loja online, todo esse processo é automático."</button>
+                <button data-target="ricardo_final_ruim" data-feedback="ricardo_fb_2b">"Com a Loja VirtUOL você aceitaria cartão de crédito, boleto, e não só PIX. Isso facilitaria para o seu cliente."</button>
+                <button data-target="ricardo_final_ruim" data-feedback="ricardo_fb_2c">"Funciona, mas é arriscado. Receber dados de cliente por mensagem não é seguro. Nossa plataforma oferece muito mais segurança."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="ricardo_3">
+            <div class="feedback" data-feedback-id="ricardo_fb_2a"></div>
+            <div class="dialogo-cliente"><p><strong>Ricardo:</strong> "É, pensando por esse lado do tempo, faz sentido. Mas eu não tenho tempo nem para pensar nisso, quem dirá para construir e gerenciar uma loja virtual inteira."</p></div>
+            <div class="opcoes-container">
+                <button data-target="ricardo_final_sucesso" data-feedback="ricardo_fb_3a">"Esse é o ponto! Para empreendedores como você, temos o serviço Loja Pronta. Você foca na sua loja física, e nossa equipe de especialistas constrói e atualiza sua loja virtual para você. Resolvemos seu problema de tempo e automação de uma vez só."</button>
+                <button data-target="ricardo_final_ruim" data-feedback="ricardo_fb_3b">"Mas a nossa plataforma Loja VirtUOL é muito fácil de mexer, você aprenderia rápido."</button>
+                <button data-target="ricardo_final_ruim" data-feedback="ricardo_fb_3c">"Você pode começar aos poucos, cadastrando um produto por dia. Em pouco tempo a loja está no ar."</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="ricardo_final_sucesso"><div class="final-conteudo"><h2>Venda Inteligente!</h2><p>Você foi brilhante! Não confrontou o cliente, mas o fez chegar à própria conclusão de que o método dele era ineficiente. Depois, usou a objeção de "falta de tempo" para fazer o upsell perfeito para o serviço Loja Pronta.</p><button class="botao" onclick="voltarAoMenu('ricardo', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="ricardo_final_ruim"><div class="final-conteudo"><h2>Objeção Venceu!</h2><div class="feedback" data-feedback-id="ricardo_fb_1b"></div><div class="feedback" data-feedback-id="ricardo_fb_1c"></div><div class="feedback" data-feedback-id="ricardo_fb_2b"></div><div class="feedback" data-feedback-id="ricardo_fb_2c"></div><div class="feedback" data-feedback-id="ricardo_fb_3b"></div><div class="feedback" data-feedback-id="ricardo_fb_3c"></div><button class="botao" onclick="voltarAoMenu('ricardo', 'falha')">Voltar à Seleção</button></div></div>
+
+        <div class="tela-cenario" id="gustavo_1">
+            <div class="dialogo-cliente"><p><strong>Gustavo:</strong> "Boa tarde. Eu já tenho uma loja virtual com a Concorrente X. O plano deles me custa R$ 79,90 por mês. O de vocês, pelo que vi no folheto, custa R$ 99,90. Vocês cobrem a oferta deles?"</p></div>
+            <div class="opcoes-container">
+                <button data-target="gustavo_2" data-feedback="gustavo_fb_1a">"Olá Gustavo! Entendo sua busca pelo melhor preço. Mas uma plataforma não é só o valor da mensalidade. Me diga, nesses R$ 79,90, quanto você gasta a mais com taxas de frete? Pergunto isso porque nosso plano inclui o Envio Fácil, que pode te dar até 70% de desconto nos Correios."</button>
+                <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_1b">"Infelizmente não trabalhamos com descontos para cobrir ofertas, mas posso garantir que nossa plataforma é superior."</button>
+                <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_1c">"Vou verificar com meu gerente se consigo um desconto para igualar a oferta para você."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="gustavo_2">
+            <div class="feedback" data-feedback-id="gustavo_fb_1a"></div>
+            <div class="dialogo-cliente"><p><strong>Gustavo:</strong> "Desconto no frete? Interessante, o frete realmente pesa no meu custo. Mas será que essa economia compensa a diferença na mensalidade?"</p></div>
+            <div class="opcoes-container">
+                <button data-target="gustavo_3" data-feedback="gustavo_fb_2a">"Com certeza. E não é só isso. Nosso ecossistema é exclusivo: você integra gratuitamente sua loja ao Shopping UOL, ganhando um canal de vendas com a credibilidade da nossa marca. A economia no frete somada à visibilidade extra geralmente superam, e muito, a diferença na mensalidade."</button>
+                <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_2b">"Sim, compensa. A maioria dos nossos clientes relata uma grande economia com o Envio Fácil."</button>
+                <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_2c">"Além do frete, nossa plataforma tem IA para criação de descrição de produtos, o que te economiza tempo."</button>
+            </div>
+        </div>
+        <div class="tela-cenario" id="gustavo_3">
+            <div class="feedback" data-feedback-id="gustavo_fb_2a"></div>
+            <div class="dialogo-cliente"><p><strong>Gustavo:</strong> "Entendi... Então a proposta de vocês não é ser mais barato, mas gerar mais economia e visibilidade em outras pontas... Faz sentido. Gostei da sua abordagem."</p></div>
+            <div class="opcoes-container">
+                <button data-target="gustavo_final_sucesso" data-feedback="gustavo_fb_3a">"Exatamente! Nosso objetivo é ser a parceria mais lucrativa para o seu negócio. Vamos fazer uma simulação de quanto você pode economizar no frete com a gente?"</button>
+                <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_3b">"Isso mesmo. Então, vamos fechar a troca de plataforma?"</button>
+                 <button data-target="gustavo_final_ruim" data-feedback="gustavo_fb_3c">"Que bom que gostou. A qualidade tem seu preço, não é mesmo?"</button>
+            </div>
+        </div>
+        <div class="tela-cenario final final-sucesso" id="gustavo_final_sucesso"><div class="final-conteudo"><h2>Negociação de Mestre!</h2><p>Você foi perfeito! Não caiu na armadilha do preço, soube desviar o foco para o valor e usou nossos diferenciais exclusivos (Envio Fácil e Shopping UOL) como argumentos irrefutáveis. Você vendeu VALOR, não preço.</p><button class="botao" onclick="voltarAoMenu('gustavo', 'sucesso')">Voltar à Seleção</button></div></div>
+        <div class="tela-cenario final final-ruim" id="gustavo_final_ruim"><div class="final-conteudo"><h2>Venda Perdida!</h2><div class="feedback" data-feedback-id="gustavo_fb_1b"></div><div class="feedback" data-feedback-id="gustavo_fb_1c"></div><div class="feedback" data-feedback-id="gustavo_fb_2b"></div><div class="feedback" data-feedback-id="gustavo_fb_2c"></div><div class="feedback" data-feedback-id="gustavo_fb_3b"></div><div class="feedback" data-feedback-id="gustavo_fb_3c"></div><button class="botao" onclick="voltarAoMenu('gustavo', 'falha')">Voltar à Seleção</button></div></div>
+        
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

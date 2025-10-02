@@ -39,6 +39,22 @@ h1, h2 { text-align: center; color: var(--cor-primaria); }
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1000; }
 .modal-conteudo { background-color: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 90%; text-align: center; animation: fadeIn 0.3s; }
 
+#info-jogador {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+#info-jogador p {
+    margin: 5px 15px;
+    font-size: 1.1em;
+    color: #495057;
+}
+
 .selecao-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
 .coluna-dificuldade { border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; }
 .coluna-dificuldade h3 { text-align: center; margin-top: 0; padding-bottom: 15px; border-bottom: 2px solid; }
